@@ -5,8 +5,9 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Navbar from './components/Navbar';
 import DashboardHR from './components/DashboardHR';
-import CardDetails from './components/CardDetails';
+import Candidates from './components/Candidates';
 import UploadPage from './components/UploadPage';
+
 
 const App = () => {
   return (
@@ -18,10 +19,10 @@ const App = () => {
         <Route path="/" exact component={Home} />
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
-        {/* <Route path="/dashboard" exact component={DashboardHR} />
-        <Route path="/card/:jobTitle" exact component={CardDetails} /> */}
+        {/* <Route path="/dashboard" exact component={DashboardHR} /> */}
 
         <Route path="/upload" exact component={UploadPage} />
+        <Route path="/candidates" exact component={Candidates} />
       </Switch>
     </Router>
   );

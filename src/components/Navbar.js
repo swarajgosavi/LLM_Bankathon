@@ -15,7 +15,7 @@ const Navbar = ({ loggedInUser }) => {
       setTimeout(() => {
         setIsSidebarOpen(false);
         setSidebarAnimation('');
-      }, 300); // Wait for the animation to finish
+      }, 300); 
     } else {
       setIsSidebarOpen(true);
       setSidebarAnimation('slide-in');
@@ -38,7 +38,7 @@ const Navbar = ({ loggedInUser }) => {
         </button>
         <div className={`sidebar ${isSidebarOpen ? 'open' : ''} ${sidebarAnimation}`}>
           <div className="sidebar-header">
-            {/* User profile picture and name */}
+
             {loggedInUser && (
               <div className="user-profile">
                 <img src={loggedInUser.profilePic} alt="Profile" className="profile-pic" />
