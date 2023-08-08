@@ -6,21 +6,14 @@ import off2 from '../images/off2.jpg';
 import off3 from '../images/off3.jpg';
 import off4 from '../images/off4.jpg';
 import off5 from '../images/off5.jpg';
-import SlidingSidebar from './Sidebar';
 
 const carouselImages = [off1, off2, off3, off4, off5];
 
 const Home = () => {
-
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [prevImageIndex, setPrevImageIndex] = useState(carouselImages.length - 1);
 
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-    const toggleSidebar = () => {
-        setIsSidebarOpen(!isSidebarOpen);
-    };
-
+    // Function to switch images every 2 seconds
     useEffect(() => {
         const interval = setInterval(() => {
             setPrevImageIndex(currentImageIndex);
@@ -58,7 +51,6 @@ const Home = () => {
                 <div className="col-lg-6">
                     {/* Right part */}
                     <div className='carousel-container'>
-
                         <div className="carousel-frame">
                             {carouselImages.map((image, index) => (
                                 <img
@@ -71,15 +63,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-
-
-                <div className="sidebar-toggle-btn" onClick={toggleSidebar}>
-                    Toggle Sidebar
-                </div>
             </div>
-
-
-            <SlidingSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
         </div>
     );
 };

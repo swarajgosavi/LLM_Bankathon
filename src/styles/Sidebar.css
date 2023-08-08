@@ -1,57 +1,79 @@
-/* Styles for the sliding sidebar */
+/* Sidebar.css */
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: -280px; /* Sidebar starts off-screen */
-    width: 280px;
-    height: 100%;
-    background-color: #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    transition: left 0.3s ease-in-out;
+  width: 300px;
+  position: fixed;
+  top: 0;
+  left: 300px;
+  height: 100%;
+  background-color: #afbcf0;
+  color: #fff;
+  padding: 20px;
+  transition: left 0.3s ease; 
+  z-index: 1000;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+
+.sidebar.slide-in {
+  animation: slideIn 0.3s forwards;
+}
+
+
+.sidebar.slide-out {
+  animation: slideOut 0.3s backwards;
+}
+
+@keyframes slideIn {
+  from {
+    left: -300px;
   }
-  
-  .sidebar.open {
-    left: 0; /* Slide the sidebar into view */
-  }
-  
-  /* Styles for the close button */
-  .close-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  /* Styles for the sidebar content */
-  .sidebar-content {
-    padding: 20px;
-  }
-  
-  /* Styles for the main content area */
-  .main-content {
-    margin-left: 280px; /* Adjust to accommodate the sidebar width */
-    padding: 20px;
-  }
-  
-  /* Styles for the hamburger menu button */
-  .menu-btn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    cursor: pointer;
-    z-index: 1000;
-  }
-  
-  /* Styles for the navbar */
-  .navbar {
-    position: fixed;
-    top: 0;
+  to {
     left: 0;
-    width: 100%;
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    z-index: 999;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    left: 0;
+  }
+  to {
+    left: -300px;
+  }
+}
+  
+  .profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .user-name {
+    font-size: 40px;
+    font-weight: bold;
+  }
+  
+  .sidebar-menu {
+    list-style: none;
+    padding: 20px;
+  }
+  
+  .sidebar-item {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .sidebar-item:hover {
+    background-color: #afbcf0;
+  }
+  
+  .tab-name {
+    margin-left: 10px;
   }
   
