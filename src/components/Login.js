@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { signInWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { useHistory } from 'react-router-dom';
 import '../styles/Login.css';
+import { auth } from "../fb";
 import googleIcon from '../images/google.png';
 import deskImg from '../images/desk.jpg';
 import companyLogo from '../images/company-logo.png';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const history = useHistory();
 
-    const history = useHistory();
+  const handleSignIn = () => {
+    const authInstance = getAuth();
 
-    const handleSignIn = () => {
-      // Perform sign-in logic (e.g., authenticate user)
-  
-      // After successful sign-in, navigate to the home page
-      history.push('/');
-    };
-  
-  
+    signInWithEmailAndPassword(authInstance, email, password)
+      .then((userCredential) => {
+        console.log('User signed in:', userCredential.user.uid);
+        history.push('/');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
+
   return (
     <div className="login-container">
       <div className="login-content">
@@ -25,10 +35,20 @@ const Login = () => {
         </div>
         <h3>Login</h3>
         <div className="input-container">
-          <input type="email" placeholder="Email" />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         <div className="input-container">
-          <input type="password" placeholder="Password" />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
         <div className="forgot-password">
           <a href="/">Forgot Password?</a>
@@ -50,12 +70,11 @@ const Login = () => {
         </div>
       </div>
       <div className="login-image">
-      <img
-            src={deskImg}
-            alt="Google Icon"
-            className='login-img'
-            
-          />
+        <img
+          src={deskImg}
+          alt="Google Icon"
+          className='login-img'
+        />
       </div>
     </div>
   );

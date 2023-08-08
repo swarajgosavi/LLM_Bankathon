@@ -1,4 +1,4 @@
-/* Login.css */
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -18,7 +18,7 @@ body {
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  max-width: 90%; /* Optional: Set a maximum width to make it responsive */
+  max-width: 90%; 
   margin: 0 auto;
 }
 
@@ -128,8 +128,8 @@ input {
 }
 
 .company-logo {
-  width: 120px; /* Set the width of the company logo as needed */
-  height: 30px; /* Set the height of the company logo as needed */
+  width: 120px; 
+  height: 30px; 
   margin-right: 10px;
 
 }
