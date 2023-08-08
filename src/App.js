@@ -7,6 +7,9 @@ import Navbar from './components/Navbar';
 import DashboardHR from './components/DashboardHR';
 import Candidates from './components/Candidates';
 import UploadPage from './components/UploadPage';
+import Test from './components/TestInterface';
+import Instructions from './components/Instructions';
+
 
 
 const App = () => {
@@ -23,6 +26,8 @@ const App = () => {
 
         <Route path="/upload" exact component={UploadPage} />
         <Route path="/candidates" exact component={Candidates} />
+        <Route path="/instructions" exact component={Instructions} />
+        <Route path="/test" exact component={Test} />
       </Switch>
     </Router>
   );
