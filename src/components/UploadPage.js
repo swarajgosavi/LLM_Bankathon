@@ -1,10 +1,31 @@
 import React, { useState } from 'react';
 import '../styles/UploadPage.css';
-import { storage } from '../fb';
+import { storage, db } from '../fb';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { collection, doc, getDocs } from 'firebase/firestore';
+import { useEffect } from 'react';
+
 
 
 const UploadPage = () => {
+  const dbInstances = collection(db, '/users/JkDgBJKaFpdohDbE7IupoCl4pfT2/Job Decsription')
+
+
+  const [array, setArray] = useState([]);
+  
+  async function getDoc() {  
+    const docSnap = await getDocs(dbInstances);
+    setArray(docSnap.docs.map(function(item) {
+      return { ...item.data(), id: item.id }
+    }))
+    
+  }
+
+  useEffect(() => {
+    getDoc();
+  }, [])
+  
+
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
   const handleFileUpload = (event) => {
@@ -17,8 +38,15 @@ const UploadPage = () => {
       <div className="left-column col-lg-6">
         <h2>Detailed Description</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vehicula mi sit amet fermentum convallis. In tincidunt ligula vitae dolor scelerisque, vel semper nunc volutpat.
-
+          {array.map(function(item) {
+        return (
+          
+            <div>
+            {item.desc}
+          </div>
+         
+        )
+      })}
         </p>
       </div>
       <div className="right-column col-lg-6">

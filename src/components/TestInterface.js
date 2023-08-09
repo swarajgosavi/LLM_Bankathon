@@ -1,20 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/TestInterface.css'; // You can create this stylesheet
 
-var formdata = new FormData();
-var formdata = new FormData();
-formdata.append("job_title", "Bank Manager");
-formdata.append("job_description", "Vodafone Idea Limited is an Aditya Birla Group and Vodafone Group partnership. It is India’s leading telecom service provider. The Company provides pan India Voice and Data services across 2G, 3G and 4G platform. With the large spectrum portfolio to support the growing demand for data and voice, the company is committed to deliver delightful customer experiences and contribute towards creating a truly ‘Digital India’ by enabling millions of citizens to connect and build a better tomorrow. The Company is developing infrastructure to introduce newer and smarter technologies, making both retail and enterprise customers future ready with innovative offerings, conveniently accessible through an ecosystem of digital channels as well as extensive on-ground presence. The Company is listed on National Stock Exchange (NSE) and Bombay Stock Exchange (BSE) in India.");
-formdata.append("skills_must", "good communication, accounting");
-formdata.append("skills_good", "proficiency in MS Excel, Tally");
 
-var requestOptions = {
-  method: 'POST',
-  body: formdata,
-  redirect: 'follow'
-};
 
-const { data, isPending, error } = useFetch('http://localhost:8000/job-desc-readability', requestOptions)
 
 const questions = [
     '1. Can you describe your experience and background in the banking industry?',
@@ -29,7 +17,7 @@ const questions = [
     '10. How do you stay updated with industry trends and advancements to ensure your branch\'s offerings remain competitive?',
   ];
   
-  questions = data
+
 
 const TestInterface = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);

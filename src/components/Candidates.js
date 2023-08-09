@@ -1,41 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import '../styles/Candidates.css';
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from '../fb';
 
 const Candidates = () => {
+
+  const dbInstances = collection(db, '/users/JkDgBJKaFpdohDbE7IupoCl4pfT2/Job Decsription/xeItrAGr5zYF1k1dcnRp/Candidate')
+
+
   const history = useHistory();
   const { jobTitle } = useParams();
+  const [array, setArray] = useState([]);
   const [selectedOption, setSelectedOption] = useState('shortlisted');
 
-  const handleOptionChange = (option) => {
-    setSelectedOption(option);
+  const handleOptionChange = () => {
+  //   getDocs(collection(db, "/users/JkDgBJKaFpdohDbE7IupoCl4pfT2/Job Decsription/xeItrAGr5zYF1k1dcnRp/Candidate"))
+  // .then(response => {
+  //   console.log(
+  //     response.docs.map((item) => {
+  //       shortlistedCards.push(item.data())
+  //       return {...item.data(), id : item.id}
+  //     })
+  //   )
+  // })
   };
 
-  const shortlistedCards = [
-    { name: 'John Doe', skills: 'Frontend Development' },
-    { name: 'Jane Smith', skills: 'UI/UX Design' },
-    { name: 'John Doe', skills: 'Frontend Development' },
-    { name: 'Jane Smith', skills: 'UI/UX Design' },
+  async function getData() {
+    const data = await getDocs(dbInstances);
+    setArray(data.docs.map(function(item) {
+      return { ...item.data(), id: item.id }
+    }))
+  }
 
-  ];
+  useEffect(() => {
+    getData();
+  }, [])
 
-  const disqualifiedCards = [
-    { name: 'Michael Johnson', skills: 'Data Analysis' },
-    { name: 'Emily Brown', skills: 'Project Management' },
-    { name: 'Michael Johnson', skills: 'Data Analysis' },
-    { name: 'Emily Brown', skills: 'Project Management' },
-    { name: 'Michael Johnson', skills: 'Data Analysis' },
-    { name: 'Emily Brown', skills: 'Project Management' },
-    { name: 'Michael Johnson', skills: 'Data Analysis' },
-    { name: 'Emily Brown', skills: 'Project Management' },
+  // shortlistedCards = [
+  //   { name: 'John Doe', skills: 'Frontend Development' },
+  //   { name: 'Jane Smith', skills: 'UI/UX Design' },
+  //   { name: 'John Doe', skills: 'Frontend Development' },
+  //   { name: 'Jane Smith', skills: 'UI/UX Design' },
+  // ];
 
-  ];
+  // const disqualifiedCards = [
+  //   { name: 'Michael Johnson', skills: 'Data Analysis' },
+  //   { name: 'Emily Brown', skills: 'Project Management' },
+  //   { name: 'Michael Johnson', skills: 'Data Analysis' },
+  //   { name: 'Emily Brown', skills: 'Project Management' },
+  //   { name: 'Michael Johnson', skills: 'Data Analysis' },
+  //   { name: 'Emily Brown', skills: 'Project Management' },
+  //   { name: 'Michael Johnson', skills: 'Data Analysis' },
+  //   { name: 'Emily Brown', skills: 'Project Management' },
+  // ];
 
-  const cards = selectedOption === 'shortlisted' ? shortlistedCards : disqualifiedCards;
+  // const cards = selectedOption === 'shortlisted' ? shortlistedCards : disqualifiedCards;
 
-  const handleApprove = () => {
-    console.log(`Approved ${selectedOption} candidates`);
-  };
+  // const handleApprove = () => {
+  //   console.log(`Approved ${selectedOption} candidates`);
+  // };
 
   return (
     <div className="card-details-container">
@@ -43,10 +67,11 @@ const Candidates = () => {
       <div className="option-boxes">
         <div
           className={`option-box ${selectedOption === 'shortlisted' ? 'active' : ''}`}
-          onClick={() => handleOptionChange('shortlisted')}
+          onClick={getData}
         >
           Shortlisted
         </div>
+        
         <div
           className={`option-box ${selectedOption === 'disqualified' ? 'active' : ''}`}
           onClick={() => handleOptionChange('disqualified')}
@@ -55,17 +80,21 @@ const Candidates = () => {
         </div>
       </div>
       <div className="card-list">
-        {cards.map((card, index) => (
-          <div className="card" key={index}>
-            <h3>{card.name}</h3>
-            <p>{`Skills: ${card.skills}`}</p>
-            <a href="/path-to-cv.pdf" target="_blank" rel="noopener noreferrer" className="view-cv-link">
+        {array.map(function(item) {
+        return (
+          
+            <div className="card">
+            <h3>{item.name}</h3>
+            <p>{`Email: ${item.email}`}</p>
+            <a href={item.CV} target="_blank" rel="noopener noreferrer" className="view-cv-link">
               View CV
             </a>
           </div>
-        ))}
+         
+        )
+      })}
       </div>
-      <button className="approve-button" onClick={handleApprove}>
+      <button className="approve-button" >
         Approve
       </button>
     </div>
