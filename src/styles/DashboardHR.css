@@ -1,0 +1,169 @@
+/* General styles for the dashboard container */
+.dashboard-container {
+    display: flex;
+  }
+  
+  /* Styles for the hamburger menu */
+  .menu-btn {
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  .line {
+    width: 30px;
+    height: 2px;
+    background-color: #333;
+    margin: 5px 0;
+  }
+  
+  /* Styles for the sidebar */
+  .sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-120%);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Styles for the open sidebar */
+  .sidebar.open {
+    transform: translateX(-20%);
+  }
+  
+  /* Styles for the profile picture */
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  /* Styles for the admin name */
+  .admin-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Styles for the sidebar items (tabs) */
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  /* Styles for the icon in the sidebar items */
+  .icon {
+    margin-right: 10px;
+  }
+  
+  /* Styles for the close button */
+  .close-btn {
+    margin-top: auto;
+    cursor: pointer;
+  }
+  
+  /* Styles for the overview page */
+  .overview-page {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  /* Card styles */
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Display 4 cards in a row */
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card-info {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Styles for the card details container */
+  .card-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  .switch-selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%; /* Full-width */
+    height: 50px;
+    background-color: #ddd;
+    border-radius: 25px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .option {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    height: 100%;
+    transition: color 0.3s;
+  }
+  
+  .option.active {
+    color: #fff;
+  }
+  
+  .selector {
+    width: 50%;
+    height: 100%;
+    background-color: #4caf50;
+    border-radius: 25px;
+    transition: transform 0.3s;
+  }
+  
+  .selector.shortlisted {
+    transform: translateX(0);
+  }
+  
+  .selector.disqualified {
+    transform: translateX(100%);
+  }
+  
+
+  .option:nth-child(1) {
+    text-align: left;
+    /* padding-right: 500px; */
+  }
+  
+  .option:nth-child(2) {
+    text-align: right;
+    /* padding-left: 0px; */
+  }
+  

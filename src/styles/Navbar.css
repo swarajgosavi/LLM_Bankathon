@@ -1,79 +1,92 @@
 /* Navbar.css */
 .container-fluid {
-    /* Remove the fixed width and allow the container to take full width */
-    width: 1200px;
-    height: 40px;
+  /* Remove the fixed width and allow the container to take full width */
+  /* width: 1200px; */
+  height: 40px;
+}
+
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Remove the fixed width and allow the navbar to take full width */
+  width: 1500px;
+}
+
+.navbar-brand img {
+  width: 100px; /* Adjust the logo size as needed */
+}
+
+.navbar-nav {
+  align-items: center;
+}
+
+.nav-item {
+  margin-right: 10px;
+}
+
+.nav-link {
+  color: #333;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  color: #4caf50;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Add a stylish underline on hover */
+.nav-link::before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: #4caf50;
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.2s ease-in-out;
+}
+
+.nav-link:hover::before {
+  width: 100%;
+}
+
+/* Add a smooth animation for the logo */
+.navbar-brand img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar-brand img:hover {
+  transform: rotate(360deg);
+}
+
+/* Media Query for smaller screens (no changes) */
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 28px;
   }
-  
-  .navbar {
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Remove the fixed width and allow the navbar to take full width */
-    width: 1200px;
-  }
-  
-  .navbar-brand img {
-    width: 100px; /* Adjust the logo size as needed */
-  }
-  
-  .navbar-nav {
-    align-items: center;
-  }
-  
-  .nav-item {
-    margin-right: 10px;
-  }
-  
-  .nav-link {
-    color: #333;
-    font-weight: bold;
-  }
-  
-  .nav-link:hover {
-    color: #4caf50;
-    transition: color 0.2s ease-in-out;
-  }
-  
-  /* Add a stylish underline on hover */
-  .nav-link::before {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background-color: #4caf50;
-    position: absolute;
-    bottom: -3px;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: width 0.2s ease-in-out;
-  }
-  
-  .nav-link:hover::before {
+  .input-group {
     width: 100%;
   }
-  
-  /* Add a smooth animation for the logo */
-  .navbar-brand img {
-    transition: transform 0.3s ease-in-out;
+  .form-control {
+    padding: 8px 15px;
   }
-  
-  .navbar-brand img:hover {
-    transform: rotate(360deg);
+  .btn-primary {
+    padding: 8px 20px;
   }
-  
-  /* Media Query for smaller screens (no changes) */
-  @media (max-width: 768px) {
-    .display-4 {
-      font-size: 28px;
-    }
-    .input-group {
-      width: 100%;
-    }
-    .form-control {
-      padding: 8px 15px;
-    }
-    .btn-primary {
-      padding: 8px 20px;
-    }
-  }
-  
+}
+/* ... (other styles) */
+
+.navbar-brand-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-toggler {
+  background-color: red;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+

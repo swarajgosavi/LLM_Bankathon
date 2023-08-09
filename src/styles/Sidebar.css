@@ -1,0 +1,79 @@
+/* Sidebar.css */
+.sidebar {
+  width: 300px;
+  position: fixed;
+  top: 0;
+  left: -300px;
+  height: 100%;
+  background-color: #afbcf0;
+  color: #fff;
+  padding: 20px;
+  transition: left 0.3s ease; 
+  z-index: 1000;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+
+.sidebar.slide-in {
+  animation: slideIn 0.3s forwards;
+}
+
+
+.sidebar.slide-out {
+  animation: slideOut 0.3s backwards;
+}
+
+@keyframes slideIn {
+  from {
+    left: -300px;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    left: 0;
+  }
+  to {
+    left: -300px;
+  }
+}
+  
+  .profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .user-name {
+    font-size: 40px;
+    font-weight: bold;
+  }
+  
+  .sidebar-menu {
+    list-style: none;
+    padding: 20px;
+  }
+  
+  .sidebar-item {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .sidebar-item:hover {
+    background-color: #afbcf0;
+  }
+  
+  .tab-name {
+    margin-left: 10px;
+  }
+  
