@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {

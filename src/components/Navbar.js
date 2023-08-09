@@ -3,8 +3,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import companyLogo from '../images/company-logo.png';
 import '../styles/Navbar.css';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../fb';
 
-const Navbar = ({ loggedInUser }) => {
+let loggedInUser = null
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const uid = user.uid;
+    console.log(uid);
+    loggedInUser = user
+  } else {
+    loggedInUser = null
+  }
+});
+
+const Navbar = () => {  
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -47,14 +62,14 @@ const Navbar = ({ loggedInUser }) => {
             {loggedInUser ? (
               <li className="nav-item">
                 <Link className="nav-link" to="/profile">
-                  <i className="fas fa-user"></i> {loggedInUser.name}
+                  <i className="fas fa-user"></i> {loggedInUser.displayName}
                 </Link>
               </li>
             ) : (
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/login">
-                    <a href="/login">Login</a>
+                    Login
                   </Link>
                 </li>
                 <li className="nav-item">

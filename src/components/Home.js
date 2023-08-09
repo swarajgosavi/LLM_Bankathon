@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Home.css';
-import companyLogo from '../images/company-logo.png';
 import off1 from '../images/off1.jpg';
 import off2 from '../images/off2.jpg';
 import off3 from '../images/off3.jpg';
@@ -23,13 +22,10 @@ const Home = () => {
         return () => clearInterval(interval);
     }, [carouselImages.length, currentImageIndex]);
 
-    const loggedInUser = null;
-
     return (
         <div className="container">
             <div className="row">
                 <div className="col-lg-6">
-                    {/* Left part */}
                     <div className="text-container d-flex flex-column align-items-center justify-content-center h-100">
                         <h1 className="display-4 text-center">Some Tagline</h1>
                         <h2 className="text-center">Find Your Next Job</h2>
@@ -49,7 +45,6 @@ const Home = () => {
                 </div>
 
                 <div className="col-lg-6">
-                    {/* Right part */}
                     <div className='carousel-container'>
                         <div className="carousel-frame">
                             {carouselImages.map((image, index) => (

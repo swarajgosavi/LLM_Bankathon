@@ -3,10 +3,16 @@ import { useHistory } from 'react-router-dom';
 import googleIcon from '../images/google.png';
 import deskImg from '../images/desk.jpg';
 import companyLogo from '../images/company-logo.png';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from '../fb';
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword,
+  signInWithPopup, 
+  GoogleAuthProvider
+ } from 'firebase/auth';
+import { db } from '../fb';
 import { doc, setDoc } from 'firebase/firestore';
 import '../styles/Signup.css';
+
 
 const Signup = () => {
   const history = useHistory();
@@ -38,7 +44,6 @@ const Signup = () => {
           });
         })
         .catch((error) => {
-          const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorMessage);
         });
@@ -46,6 +51,35 @@ const Signup = () => {
       setPasswordsMatch(false);
     }
   };
+
+  const handleSignUpGoogle = () => {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+        console.log(token, user)
+          const userRef = doc(db, 'users', user.uid);
+          setDoc(userRef, {
+            name: user.displayName,
+            email: user.email,
+          })
+          .then(() => {
+            history.push('/');
+          })
+          .catch((error) => {
+            console.error('Error storing user data:', error);
+          });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        const email = error.customData.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(errorMessage, email, credential)
+      });
+  }
 
   return (
     <div className="login-container">
@@ -64,18 +98,18 @@ const Signup = () => {
         </div>
         <div className="input-container">
           <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="input-container">
-          <input
             type="text"
             placeholder="Company Name"
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
+          />
+        </div>
+        <div className="input-container">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="input-container">
@@ -102,13 +136,13 @@ const Signup = () => {
         <div className="or-divider">
           <span>or</span>
         </div>
-        <button className="google-sign-in-btn">
+        <button className="google-sign-in-btn" onClick={handleSignUpGoogle}>
           <img src={googleIcon} alt="Google Icon" className="google-icon" />
           Sign Up with Google
         </button>
         <div className="signup-link">
           <p>
-            Already have an account? <a href="/signup">Login</a>
+            Already have an account? <a href="/login">Login</a>
           </p>
         </div>
       </div>
