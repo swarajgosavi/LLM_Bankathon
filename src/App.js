@@ -19,9 +19,7 @@ const App = () => {
         <Route path="/login"> 
           <Login />
         </Route>
-        <Route path="/signup"> 
-          <Signup />
-        </Route>
+        <Route path="/signup" emelent={}>
         {/* Add more routes as needed */}
       </Switch>
     </Router>
