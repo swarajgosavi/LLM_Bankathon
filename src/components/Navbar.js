@@ -39,6 +39,11 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul className="navbar-nav">
+          <li className="nav-item">
+              <Link className="nav-link" to="/desc">
+                Job Description
+              </Link>
+            </li>
             <li className="nav-item">
               <Link className="nav-link" to="/upload">
                 Upload

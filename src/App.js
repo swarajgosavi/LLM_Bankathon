@@ -9,6 +9,7 @@ import Candidates from './components/Candidates';
 import UploadPage from './components/UploadPage';
 import Test from './components/TestInterface';
 import Instructions from './components/Instructions';
+import JobDesc from './components/jobdesc';
 
 
 
@@ -23,7 +24,7 @@ const App = () => {
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/dashboard" exact component={DashboardHR} />
-
+        <Route path="/desc" exact component={JobDesc} />
         <Route path="/upload" exact component={UploadPage} />
         <Route path="/candidates" exact component={Candidates} />
         <Route path="/instructions" exact component={Instructions} />

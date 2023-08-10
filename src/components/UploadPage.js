@@ -40,9 +40,9 @@ const UploadPage = () => {
         <p>
           {array.map(function(item) {
         return (
-          
+           
             <div>
-            {item.desc}
+            {item.id}
           </div>
          
         )
