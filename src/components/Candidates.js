@@ -3,6 +3,29 @@ import { useHistory, useParams } from 'react-router-dom';
 import '../styles/Candidates.css';
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../fb';
+import { sendEmailVerification } from 'firebase/auth';
+
+function SendEmail() {
+  var formdata = new FormData();
+  formdata.append("name", "Shubham");
+
+var requestOptions = {
+  method: 'POST',
+  body: formdata,
+  redirect: 'follow'
+};
+
+fetch("http://localhost:8000/test", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+
+  return (
+    <div>
+      {alert("Email sent")}
+    </div>
+  )
+}
 
 const Candidates = () => {
 
@@ -36,6 +59,15 @@ const Candidates = () => {
   useEffect(() => {
     getData();
   }, [])
+
+  let [ emailbool, setEmail ] = useState(false)
+
+  function sendEmail() {
+    console.log(emailbool)
+    setEmail(true)
+    console.log(emailbool)
+     
+  }
 
   // shortlistedCards = [
   //   { name: 'John Doe', skills: 'Frontend Development' },
@@ -94,9 +126,10 @@ const Candidates = () => {
         )
       })}
       </div>
-      <button className="approve-button" >
+      <button className="approve-button" onClick={sendEmail}>
         Approve
       </button>
+      { emailbool && <SendEmail />}
     </div>
   );
 };

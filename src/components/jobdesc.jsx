@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import BarGraph from "./generate";
-import job from '../images/job-description.png'
 import useFetch from "../useFetch";
+import Button from "./button";
 
 function GenerateBox({ content, jobdesc }) {
 
@@ -36,6 +36,7 @@ function GenerateBox({ content, jobdesc }) {
             ></textarea>
             <div className="bg">
               <BarGraph data={data}></BarGraph>
+              <Button data={data} jobdesc={jobdesc} />
             </div>
           </div>
           }
@@ -71,7 +72,7 @@ function JobDesc() {
     // console.log("Generated:", generatedContent);
     setGeneratedContents([...generatedContents, generatedContent]);
     // console.log("Generated Contents:", generatedContents);
-    setDesc("");
+    // setDesc("");
   };
 
   return (

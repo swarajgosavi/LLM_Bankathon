@@ -1,15 +1,12 @@
 /* Navbar.css */
-.container-fluid {
-  /* Remove the fixed width and allow the container to take full width */
-  /* width: 1200px; */
-  height: 40px;
-}
+
 
 .navbar {
-  background-color: #ffffff;
+  background-color: rgb(206, 230, 244) ;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* Remove the fixed width and allow the navbar to take full width */
-  width: 1500px;
+  width: auto;
+  
 }
 
 .navbar-brand img {
@@ -18,10 +15,13 @@
 
 .navbar-nav {
   align-items: center;
+  
 }
 
 .nav-item {
   margin-right: 10px;
+  
+  
 }
 
 .nav-link {
@@ -30,7 +30,7 @@
 }
 
 .nav-link:hover {
-  color: #4caf50;
+  color: #eff8fc;
   transition: color 0.2s ease-in-out;
 }
 
@@ -40,7 +40,7 @@
   display: block;
   width: 0;
   height: 2px;
-  background-color: #4caf50;
+  background-color: #eff8fc;
   position: absolute;
   bottom: -3px;
   left: 50%;
@@ -90,3 +90,7 @@
   padding: 0;
 }
 
+.menu img{
+  width: 40px;
+  padding-left: 10px;
+}
