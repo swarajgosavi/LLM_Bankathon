@@ -26,7 +26,7 @@ const Home = () => {
                     <h1 className="main-heading">Elevate Hiring</h1>
                     <h2 className="sub-heading">Seamlessly Match Talent with Opportunity</h2>
                     <div className="input-group mt-3">
-                        <button className="explore-btn" type="button">
+                        <button className="explore-btn" type="button" variant="primary">
                             Explore
                         </button>
                     </div>

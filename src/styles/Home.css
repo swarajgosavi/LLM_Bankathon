@@ -44,26 +44,26 @@
 }
 
 .explore-btn {
-  width: 200px;
-  height: 70px;
-  font-size: 25px;
-  border-radius: 35px;
-  padding: 10px 30px;
-  background-color: #e6f2e6;
-  color: #167494;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  /* right: 100px; */
-  left: 150px;
-  bottom: 100px;
-  transition: background-color 0.3s;
+  width: 200px !important;
+  height: 70px !important;
+  font-size: 25px !important;
+  border-radius: 35px !important;
+  padding: 10px 30px !important;
+  background-color: #e6f2e6 !important;
+  color: #167494 !important;
+  border: none !important;
+  cursor: pointer !important;
+  position: relative !important;
+  /* right: 100px !important; */
+  left: 150px !important;
+  bottom: 100px !important;
+  transition: background-color 0.3s !important;
 }
  
 
 .explore-btn:hover {
-  background-color: #2e6c7d;
-  color: #fff;
+  background-color: #2e6c7d !important;
+  color: #fff !important;
 }
 
 .carousel-container {
