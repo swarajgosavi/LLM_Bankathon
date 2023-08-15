@@ -20,7 +20,7 @@ function GenerateBox({ content, jobdesc }) {
   };  
 
   const { data, isPending, error } = useFetch(
-    "https://llm-inference-service.onrender.com/score-enhance-job-desc",
+    "http://localhost:8000/score-enhance-job-desc",
     requestOptions
   );
 

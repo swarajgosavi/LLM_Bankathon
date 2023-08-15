@@ -24,7 +24,7 @@ function GenerateCV(desc) {
     redirect: 'follow'
   };  
 
-  const { data, isPending, error } = useFetch('https://llm-inference-service.onrender.com/score-cv', requestOptions)
+  const { data, isPending, error } = useFetch('http://localhost:8000/score-cv', requestOptions)
 
   return (
     <div>
@@ -33,7 +33,7 @@ function GenerateCV(desc) {
       { data && 
       <div>
         <h4>Done!</h4>
-        {history.push('/candidate')}
+        {history.push('/candidates')}
       </div>}
     </div>
   )

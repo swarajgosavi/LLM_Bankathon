@@ -23,7 +23,7 @@ function ScreeningQue({ desc, shortlistedCards }) {
       redirect: 'follow'
     };
 
-    const { data, isPending, error } = useFetch('https://llm-inference-service.onrender.com/screening-questions', requestOptions)
+    const { data, isPending, error } = useFetch('http://localhost:8000/screening-questions', requestOptions)
 
   return (
     <div>
@@ -86,7 +86,7 @@ function SendEmail({ email_recipients, disqualifiedCards, shortlistedCards }) {
     redirect: 'follow'
   };
 
-  const { data, isPending, error } = useFetch('https://llm-inference-service.onrender.com/send-email', requestOptions)
+  const { data, isPending, error } = useFetch('http://localhost:8000/send-email', requestOptions)
 
   return (
     <div>

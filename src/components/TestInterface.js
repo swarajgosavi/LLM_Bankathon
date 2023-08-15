@@ -29,7 +29,7 @@ function Submited({ ans, que }) {
     })
   }
 
-  const { data, isPending, error } = useFetch('https://llm-inference-service.onrender.com/evaluate-questions', requestOptions)
+  const { data, isPending, error } = useFetch('http://localhost:8000/evaluate-questions', requestOptions)
   return (
     <div>
       { error && <div>{ error }</div> }
