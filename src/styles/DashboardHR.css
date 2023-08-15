@@ -1,6 +1,8 @@
 /* General styles for the dashboard container */
 .dashboard-container {
     display: flex;
+    height: 100vh;
+    width: 100vw;
   }
   
   /* Styles for the hamburger menu */
@@ -72,98 +74,58 @@
     flex: 1;
     padding: 20px;
   }
-  
-  /* Card styles */
-  .card-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Display 4 cards in a row */
-    gap: 20px;
-  }
-  
-  .card {
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .card-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .card-info {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  /* Styles for the card details container */
-  .card-details-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  h1 {
-    margin-bottom: 20px;
-  }
-  
-  .switch-selector {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%; /* Full-width */
-    height: 50px;
-    background-color: #ddd;
-    border-radius: 25px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .option {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    height: 100%;
-    transition: color 0.3s;
-  }
-  
-  .option.active {
-    color: #fff;
-  }
-  
-  .selector {
-    width: 50%;
-    height: 100%;
-    background-color: #4caf50;
-    border-radius: 25px;
-    transition: transform 0.3s;
-  }
-  
-  .selector.shortlisted {
-    transform: translateX(0);
-  }
-  
-  .selector.disqualified {
-    transform: translateX(100%);
-  }
-  
+  /* DashboardHR.css */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
 
-  .option:nth-child(1) {
-    text-align: left;
-    /* padding-right: 500px; */
-  }
-  
-  .option:nth-child(2) {
-    text-align: right;
-    /* padding-left: 0px; */
-  }
-  
+.dashboard-page {
+  flex: 1;
+  padding: 40px;
+  background-color: #f8f8f8;
+}
+
+.job-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.job-card {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* .selected-card {
+  background-color: #e0f5ff;
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+} */
+
+.add-job-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0f5ff;
+  color: #3498db;
+  font-size: 24px;
+}
+
+.plus-icon {
+  transition: transform 0.2s;
+}
+
+.add-job-card:hover .plus-icon {
+  transform: scale(1.2);
+}

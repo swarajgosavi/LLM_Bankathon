@@ -9,10 +9,7 @@ import { FaHome, FaFileAlt, FaSignOutAlt, FaTimes } from 'react-icons/fa';
 import { loggedInUser } from '../App';
 
 
-
 const Navbar = () => {  
-
-
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [sidebarAnimation, setSidebarAnimation] = useState('');

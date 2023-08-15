@@ -22,7 +22,7 @@ const Home = () => {
     }, [carouselImages.length, currentImageIndex]);
 
     function routeChange() {
-        history.push('/desc');
+        history.push('/dashboard');
     }
 
     return (

@@ -1,84 +1,55 @@
 import React, { useState } from 'react';
-import { FaUser, FaChartBar, FaUsers, FaSignOutAlt, FaTimes } from 'react-icons/fa';
+import { FaChartBar, FaUsers, FaSignOutAlt, FaPlus } from 'react-icons/fa';
 import pfp from '../images/pfp.png';
 import '../styles/DashboardHR.css'; 
+import { db } from '../fb';
+import { collection, getDocs } from 'firebase/firestore';
+import { loggedInUser } from '../App';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-const cardsData = [
-    { jobRole: 'Software Developer', applied: 50, shortlisted: 20 },
-    { jobRole: 'UI/UX Designer', applied: 30, shortlisted: 10 },
-    { jobRole: 'Data Analyst', applied: 40, shortlisted: 15 },
-  ];
+const jobTitles = [
+  'Software Developer',
+  'UI/UX Designer',
+  'Data Analyst',
+];
 
 const DashboardHR = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('shortlisted');
+  const dbInstances = collection(db, 'users', loggedInUser.uid, 'Job Decsription')
 
+  const [array, setArray] = useState([]);
+  const [selectedJob, setSelectedJob] = useState(null);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+  const handleJobClick = (job) => {
+    setSelectedJob(job);
   };
 
-
-  const handleSwitchToggle = (option) => {
-    setSelectedOption(option);
-  };
+  useEffect(() => {
+    async function getData() {
+      const data = await getDocs(dbInstances);
+      setArray(data.docs.map(function(item) { 
+        return { ...item.data(), id: item.id }
+      }))
+    }
+    getData()
+  }, [])
 
   return (
     <div className="dashboard-container">
-      {/* Hamburger Menu */}
-      <div className="menu-btn" onClick={toggleSidebar}>
-        <div className="line"></div>
-        <div className="line"></div>
-        <div className="line"></div>
-      </div>
-
-      <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
-
-        <img src={pfp} alt="Admin Profile" className="profile-pic" />
-
-        <div className="admin-name">John Doe</div>
-
-        <div className="sidebar-item">
-          <FaChartBar className="icon" />
-          <span className="tab-name">Overview</span>
-        </div>
-
-        <div className="sidebar-item">
-          <FaUsers className="icon" />
-          <span className="tab-name">Candidates</span>
-        </div>
-
-        <div className="sidebar-item">
-          <FaSignOutAlt className="icon" />
-          <span className="tab-name">Logout</span>
-        </div>
-
-
-        <div className="close-btn" onClick={toggleSidebar}>
-          <FaTimes className="icon" />
-        </div>
-      </div>
-
-      <div className="overview-page">
-        <h1>Overview</h1>
-        <div className="card-container">
-          {cardsData.map((card, index) => (
-            <div className="card" key={index}>
-              <div className="card-title">{card.jobRole}</div>
-              <div className="card-info">
-                <div>Applied: {card.applied}</div>
-                <div>Shortlisted: {card.shortlisted}</div>
-              </div>
+      <div className="dashboard-page">
+        <h1>Dashboard</h1>
+        <div className="job-card-container">
+          {array.map((item, index) => (
+            <div
+              className={`job-card ${selectedJob === item.title ? 'selected-card' : ''}`}
+              key={index}
+              onClick={() => handleJobClick(item.title)}
+            >
+              {item.title}
             </div>
           ))}
-        </div>
-        <div className="card-details-container">
-          <h1>{selectedOption === 'shortlisted' ? 'Shortlisted' : 'Disqualified'}</h1>
-
-          <div className="switch-selector" onClick={() => handleSwitchToggle(selectedOption === 'shortlisted' ? 'disqualified' : 'shortlisted')}>
-            <div className={`selector ${selectedOption === 'shortlisted' ? 'shortlisted' : 'disqualified'}`}></div>
-            <div className={`option ${selectedOption === 'shortlisted' ? 'active' : ''}`}>Shortlisted</div>
-            <div className={`option ${selectedOption === 'disqualified' ? 'active' : ''}`}>Disqualified</div>
+          <div className="job-card add-job-card">
+            <Link to="/desc"><FaPlus className="plus-icon" /></Link>
           </div>
         </div>
       </div>
