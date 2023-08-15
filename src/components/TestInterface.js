@@ -3,8 +3,11 @@ import '../styles/TestInterface.css'; // You can create this stylesheet
 import { canRef } from './TestLogin';
 import { setDoc } from 'firebase/firestore';
 import useFetch from '../useFetch';
+import { useHistory } from 'react-router-dom';
 
 function Submited({ ans, que }) {
+  const history = useHistory();
+
   var formdata = new FormData();
   formdata.append("questions", que);
   formdata.append("answers", ans);
@@ -15,12 +18,27 @@ function Submited({ ans, que }) {
     redirect: 'follow'
   };
 
+  function addResult(data) {
+    let canDocRef = canRef.ref
+    setDoc(canDocRef, {
+      result: data.response
+    },
+    {merge: true})
+    .then(() => {
+      history.push('/testlogin');
+    })
+  }
+
   const { data, isPending, error } = useFetch('http://localhost:8000/evaluate-questions', requestOptions)
   return (
     <div>
       { error && <div>{ error }</div> }
       { isPending && <div>Loading...</div> }
-      { data && <p>{JSON.stringify(data)}</p>}
+      { data && 
+      <div>
+        {addResult(data)}
+        <center><h3>Thank You !!!</h3></center>
+      </div>}
     </div>
   )
 }
@@ -54,11 +72,6 @@ const TestInterface = () => {
       console.log(ansString, queString)
       setAns(ansString)
       setQue(queString)
-      // let canDocRef = canRef.ref
-      // setDoc(canDocRef, {
-      //   answers: answers
-      // },
-      // {merge: true})
       console.log('Answers:', JSON.stringify(answers));
       setSubmitted(true); 
     }
@@ -76,7 +89,7 @@ const TestInterface = () => {
             <div className='submission-msg'>
               {submitted && 
               <div>
-                <p>Your test has been submitted! You will be further notified through mail.</p>
+                <h1>Your test has been submitted! You will be further notified through mail.</h1>
                 <Submited ans={ans} que={que} />
               </div>
               }

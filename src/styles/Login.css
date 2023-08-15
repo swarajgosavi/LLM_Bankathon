@@ -119,19 +119,5 @@ input {
  border-radius: 40px;
 }
 
-.company-logo-container {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
 
-.company-logo {
-  width: 120px; 
-  height: 30px; 
-  margin-right: 10px;
-
-}
 

@@ -7,9 +7,13 @@ import '../styles/Navbar.css';
 import '../styles/Sidebar.css';
 import { FaHome, FaFileAlt, FaSignOutAlt, FaTimes } from 'react-icons/fa';
 import { loggedInUser } from '../App';
+import { auth } from '../fb';
+import { signOut } from 'firebase/auth';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const Navbar = () => {  
+  const history = useHistory()
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [sidebarAnimation, setSidebarAnimation] = useState('');
@@ -27,7 +31,13 @@ const Navbar = () => {
       }
   };
 
-
+  function handleLogout() {
+    signOut(auth).then(() => {
+      history.push('/login')
+    }).catch((error) => {
+      console.log("Unable to sign out")    
+    });
+  }
 
   return (
     <nav className="navbar navbar-expand-lg">
@@ -71,7 +81,7 @@ const Navbar = () => {
             </li>
             <li>
               <FaSignOutAlt className="menu-icon" />
-              <span className="menu-text">Logout</span>
+              <span className="menu-text" onClick={handleLogout}>Logout</span>
             </li>
           </ul>
         </div>
@@ -79,28 +89,18 @@ const Navbar = () => {
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link" to="/upload">
-                Upload
+              <Link className="nav-link" to="/">
+                Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/candidates">
-              Candidates
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/test">
-              Test
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/instructions">
-              Instructions
+              <Link className="nav-link" to="/dashboard">
+                Dashboard
               </Link>
             </li>
             {loggedInUser ? (
               <li className="nav-item">
-                <Link className="nav-link" to="/profile">
+                <Link className="nav-link" to="/#">
                   <i className="fas fa-user"></i> {loggedInUser.displayName}
                 </Link>
               </li>

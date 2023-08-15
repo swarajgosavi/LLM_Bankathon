@@ -5,10 +5,13 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, doc, getDoc, addDoc, setDoc } from 'firebase/firestore';
 import { useEffect } from 'react';
 import { loggedInUser } from '../App';
-import { Link } from 'react-router-dom';
 import useFetch from "../useFetch";
+import { useHistory } from 'react-router-dom';
+
 
 function GenerateCV(desc) {
+  const history = useHistory();
+
   var formdata = new FormData();
   formdata.append("hr_id", loggedInUser.uid);
   formdata.append("job_description_id", "Bank Manager");
@@ -25,8 +28,12 @@ function GenerateCV(desc) {
   return (
     <div>
       { error && <div>{ error }</div>}
-      { isPending && <div>Loading...</div> }
-      { data && <p>{JSON.stringify(data)}</p>}
+      { isPending && <div>Ranking CVs...</div> }
+      { data && 
+      <div>
+        <h4>Done!</h4>
+        {history.push('/candidate')}
+      </div>}
     </div>
   )
 

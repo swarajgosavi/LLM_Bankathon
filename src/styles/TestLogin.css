@@ -10,8 +10,8 @@ body {
   }
    */
   .login-container-t {
-    height: 650px;
-    width: 1200px;
+    height: 100vh;
+    width: 100vw;
     max-width: 1200px;
     display: flex;
     border-radius: 10px;

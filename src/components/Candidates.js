@@ -30,14 +30,13 @@ function ScreeningQue({ desc, shortlistedCards }) {
       { isPending && <div>Loading...</div> }
       { data && 
       <div>
-        {console.log(data.questions)}
         {shortlistedCards.map((item, index) => {
           let canRef = doc(db, 'users', loggedInUser.uid, 'Job Decsription/Bank Manager/Candidate', item.id)
           setDoc(canRef, 
             {questions: data.questions},
           {merge: true})
         })}
-        <button>Continue</button>
+        <center><button>Continue</button></center>
       </div>
       }
     </div>

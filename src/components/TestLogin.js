@@ -22,7 +22,7 @@ const TestLogin = () => {
       console.log(doc.documentId, doc.id, ' => ', doc.data());
       if(doc.data().exam_password === password) {
         canRef = doc
-        // history.push('/instructions')
+        history.push('/instructions')
       }
     });
     

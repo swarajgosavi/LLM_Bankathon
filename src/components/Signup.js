@@ -84,9 +84,6 @@ const Signup = () => {
   return (
     <div className="login-container">
       <div className="login-content">
-        <div className="company-logo-container">
-          <img src={companyLogo} alt="Company Logo" className="company-logo" />
-        </div>
         <h3>Signup</h3>
         <div className="input-container">
           <input

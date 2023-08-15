@@ -1,27 +1,26 @@
 import React, { useState } from 'react';
-import { FaChartBar, FaUsers, FaSignOutAlt, FaPlus } from 'react-icons/fa';
-import pfp from '../images/pfp.png';
+import { FaPlus } from 'react-icons/fa';
 import '../styles/DashboardHR.css'; 
 import { db } from '../fb';
 import { collection, getDocs } from 'firebase/firestore';
 import { loggedInUser } from '../App';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-const jobTitles = [
-  'Software Developer',
-  'UI/UX Designer',
-  'Data Analyst',
-];
+export let jobDescriptionId = null
 
 const DashboardHR = () => {
   const dbInstances = collection(db, 'users', loggedInUser.uid, 'Job Decsription')
+
+  const history = useHistory();
+
 
   const [array, setArray] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
 
   const handleJobClick = (job) => {
-    setSelectedJob(job);
+    jobDescriptionId = job
+    history.push('/candidates');
   };
 
   useEffect(() => {
@@ -43,14 +42,16 @@ const DashboardHR = () => {
             <div
               className={`job-card ${selectedJob === item.title ? 'selected-card' : ''}`}
               key={index}
-              onClick={() => handleJobClick(item.title)}
+              onClick={() => handleJobClick(item.id)}
             >
               {item.title}
             </div>
           ))}
+          <Link to="/desc">
           <div className="job-card add-job-card">
-            <Link to="/desc"><FaPlus className="plus-icon" /></Link>
+            <FaPlus className="plus-icon" />
           </div>
+          </Link>
         </div>
       </div>
     </div>
