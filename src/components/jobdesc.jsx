@@ -71,12 +71,8 @@ function JobDesc() {
   }
 
   const handleGenerate = () => {
-    
     const generatedContent = `Generated content: ${desc}`;
-    // console.log("Generated:", generatedContent);
     setGeneratedContents([...generatedContents, generatedContent]);
-    // console.log("Generated Contents:", generatedContents);
-    // setDesc("");
   };
 
   return (

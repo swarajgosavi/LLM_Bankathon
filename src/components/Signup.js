@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import googleIcon from '../images/google.png';
 import deskImg from '../images/desk.jpg';
-import companyLogo from '../images/company-logo.png';
 import { 
   getAuth, 
   createUserWithEmailAndPassword,

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import '../styles/TestLogin.css';
-import googleIcon from '../images/google.png';
-import deskImg from '../images/desk.jpg';
 import companyLogo from '../images/company-logo.png';
 import { collectionGroup, query, where, getDocs } from "firebase/firestore";
 import { db } from '../fb';

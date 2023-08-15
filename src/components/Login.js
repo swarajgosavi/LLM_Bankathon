@@ -5,10 +5,8 @@ import { signInWithEmailAndPassword,
   GoogleAuthProvider } from 'firebase/auth';
 import { useHistory } from 'react-router-dom';
 import '../styles/Login.css';
-import { auth } from "../fb";
 import googleIcon from '../images/google.png';
 import deskImg from '../images/desk.jpg';
-import companyLogo from '../images/company-logo.png';
 
 const Login = () => {
   const [email, setEmail] = useState('');

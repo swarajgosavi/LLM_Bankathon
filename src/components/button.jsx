@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {db } from "../fb";
+import React from "react";
+import { db } from "../fb";
 import { setDoc, doc } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { loggedInUser } from '../App';

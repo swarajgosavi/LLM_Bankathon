@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import '../styles/Candidates.css';
 import { getDocs, collection, deleteDoc, doc, getDoc, updateDoc, setDoc } from 'firebase/firestore';
 import { db } from '../fb';
 import { loggedInUser } from '../App';
 import useFetch from '../useFetch';
+import { jobDescriptionId } from './DashboardHR';
 
 function ScreeningQue({ desc, shortlistedCards }) {
 
@@ -22,7 +23,7 @@ function ScreeningQue({ desc, shortlistedCards }) {
       redirect: 'follow'
     };
 
-    const { data, isPending, error } = useFetch('http://localhost:8000/screening-questions', requestOptions)
+    const { data, isPending, error } = useFetch('https://llm-inference-service.onrender.com/screening-questions', requestOptions)
 
   return (
     <div>
@@ -31,7 +32,7 @@ function ScreeningQue({ desc, shortlistedCards }) {
       { data && 
       <div>
         {shortlistedCards.map((item, index) => {
-          let canRef = doc(db, 'users', loggedInUser.uid, 'Job Decsription/Bank Manager/Candidate', item.id)
+          let canRef = doc(db, 'users', loggedInUser.uid, 'Job Decsription', jobDescriptionId, 'Candidate', item.id)
           setDoc(canRef, 
             {questions: data.questions},
           {merge: true})
@@ -47,14 +48,14 @@ function ScreeningQue({ desc, shortlistedCards }) {
 function SendEmail({ email_recipients, disqualifiedCards, shortlistedCards }) {
 
   disqualifiedCards.map((item) => {
-    const docRef = doc(db, 'users', loggedInUser.uid, 'Job Decsription/Bank Manager/Candidate', item.id)
+    const docRef = doc(db, 'users', loggedInUser.uid, 'Job Decsription', jobDescriptionId, 'Candidate', item.id)
 
     deleteDoc(
       docRef
     )
   })
 
-  const JobRef = doc(db, 'users', loggedInUser.uid, 'Job Decsription/Bank Manager')
+  const JobRef = doc(db, 'users', loggedInUser.uid, 'Job Decsription', jobDescriptionId)
 
   const [desc, setDesc] = useState(null);
   const [show, setShow] = useState(false)
@@ -85,7 +86,7 @@ function SendEmail({ email_recipients, disqualifiedCards, shortlistedCards }) {
     redirect: 'follow'
   };
 
-  const { data, isPending, error } = useFetch('http://localhost:8000/send-email', requestOptions)
+  const { data, isPending, error } = useFetch('https://llm-inference-service.onrender.com/send-email', requestOptions)
 
   return (
     <div>
@@ -102,7 +103,7 @@ function SendEmail({ email_recipients, disqualifiedCards, shortlistedCards }) {
 
 
 const Candidates = () => {
-  const dbInstances = collection(db, 'users', loggedInUser.uid, 'Job Decsription/Bank Manager/Candidate')
+  const dbInstances = collection(db, 'users', loggedInUser.uid, 'Job Decsription', jobDescriptionId, 'Candidate')
 
 
   const { jobTitle } = useParams();
@@ -134,22 +135,7 @@ const Candidates = () => {
   const shortlistedCards = []
   const disqualifiedCards = []
 
-  // const disqualifiedCards = [
-  //   { name: 'Michael Johnson', skills: 'Data Analysis' },
-  //   { name: 'Emily Brown', skills: 'Project Management' },
-  //   { name: 'Michael Johnson', skills: 'Data Analysis' },
-  //   { name: 'Emily Brown', skills: 'Project Management' },
-  //   { name: 'Michael Johnson', skills: 'Data Analysis' },
-  //   { name: 'Emily Brown', skills: 'Project Management' },
-  //   { name: 'Michael Johnson', skills: 'Data Analysis' },
-  //   { name: 'Emily Brown', skills: 'Project Management' },
-  // ];
-
   const cards = selectedOption === 'shortlisted' ? shortlistedCards : disqualifiedCards;
-
-  // const handleApprove = () => {
-  //   console.log(`Approved ${selectedOption} candidates`);
-  // };
 
   let email_recipients = ""
 

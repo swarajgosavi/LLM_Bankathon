@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { loggedInUser } from '../App';
 import useFetch from "../useFetch";
 import { useHistory } from 'react-router-dom';
+import { jobDescriptionId } from './DashboardHR';
 
 
 function GenerateCV(desc) {
@@ -23,7 +24,7 @@ function GenerateCV(desc) {
     redirect: 'follow'
   };  
 
-  const { data, isPending, error } = useFetch('http://localhost:8000/score-cv', requestOptions)
+  const { data, isPending, error } = useFetch('https://llm-inference-service.onrender.com/score-cv', requestOptions)
 
   return (
     <div>
@@ -41,7 +42,7 @@ function GenerateCV(desc) {
 
 const UploadPage = () => {
 
-  const dbInstances = doc(db, 'users', loggedInUser.uid, 'Job Decsription/Bank Manager')
+  const dbInstances = doc(db, 'users', loggedInUser.uid, 'Job Decsription', jobDescriptionId)
 
   const [desc, setDesc] = useState(null);
   const [show, setShow] = useState(false)
@@ -74,7 +75,7 @@ const UploadPage = () => {
   function uploadFiles() {
     uploadedFiles.map((file, index) => {
 
-      const fileRef = collection(db, 'users', loggedInUser.uid, 'Job Decsription/Bank Manager/Candidate');
+      const fileRef = collection(db, 'users', loggedInUser.uid, 'Job Decsription', jobDescriptionId, 'Candidate');
       addDoc(fileRef, {
         file_name: file.name
       })

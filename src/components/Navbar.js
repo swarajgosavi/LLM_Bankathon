@@ -46,16 +46,11 @@ const Navbar = () => {
           <img src={companyLogo} alt="Company Logo" />
         </Link>
         <Link className = "menu" onClick = {toggleSidebar}>       
-
           <img src = {menu}/>
-
         </Link>
-
-
 
         <div className={`sidebar ${isSidebarOpen ? 'open' : ''} ${sidebarAnimation}`}>
           <div className="sidebar-header">
-
             {loggedInUser && (
               <div className="user-profile">
                 <img src={loggedInUser.profilePic} alt="Profile" className="profile-pic" />
