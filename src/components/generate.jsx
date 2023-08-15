@@ -5,11 +5,9 @@ function BarGraph({ data }) {
   const [barData, setBarData] = useState([]);
 
   useEffect(() => {
-    // Replace this with your actual API call logic
-    // Example API response: [{ score: '2019', percentage: 69.6 }, ...]
     const mockApiResponse = [
       { score: 'Readability', percentage: data.readability_score },
-      { score: 'Gender-Bias', percentage: data.bias_score },
+      { score: 'Gender-Neutrality', percentage: data.bias_score },
       { score: 'Word-Structure', percentage: data.formation_score },
     ];
 

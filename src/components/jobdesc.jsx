@@ -19,7 +19,10 @@ function GenerateBox({ content, jobdesc }) {
     redirect: 'follow'
   };  
 
-  const { data, isPending, error } = useFetch('http://localhost:8000/score-enhance-job-desc', requestOptions)
+  const { data, isPending, error } = useFetch(
+    "https://llm-inference-service.onrender.com/score-enhance-job-desc",
+    requestOptions
+  );
 
   return (
     <>
@@ -28,7 +31,7 @@ function GenerateBox({ content, jobdesc }) {
           { isPending && <div>Loading...</div> }
           { data && 
           <div className="right">
-            <textarea
+            <textarea className="generated"
               placeholder="Generated"
               cols="40"
               rows="5"
@@ -114,19 +117,9 @@ function JobDesc() {
             onChange={event => handleInput(event)}
           ></textarea>
         </div>
-        <div><button onClick={handleGenerate}>Generate</button></div>
+        <div className="gen"><button onClick={handleGenerate}>Generate</button></div>
 
         </div>
-
-        
-        {/* <div className="right">
-          <div className="image">
-            <img
-              src={job}
-              alt="Job Description"
-            />
-          </div>
-        </div> */}
         <div className="sub-container">
         {generatedContents.map((content) => (
           <GenerateBox content={content} jobdesc={data}/>
