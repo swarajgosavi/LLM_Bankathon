@@ -4,6 +4,8 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  height: 100vh;
+  width: 100vw;
 }
 
 .option-boxes {
@@ -27,12 +29,12 @@
 }
 
 .option-box.active {
-  background-color: #4caf50;
+  background-color: #0A4D68;
   color: #fff;
 }
 
 .option-box:hover {
-  background-color: #4caf50;
+  background-color: #0A4D68;
   color: #fff;
 }
 
@@ -68,7 +70,7 @@
 
 .approve-button {
   padding: 10px 20px;
-  background-color: #4caf50;
+  background-color: #0A4D68;
   border: none;
   border-radius: 5px;
   font-size: 16px;
@@ -78,5 +80,5 @@
 }
 
 .approve-button:hover {
-  background-color: #45a049;
+  background-color:#0A4D68;
 }

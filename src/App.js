@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './fb';
 import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -10,7 +12,19 @@ import UploadPage from './components/UploadPage';
 import Test from './components/TestInterface';
 import Instructions from './components/Instructions';
 import JobDesc from './components/jobdesc';
+import TestLogin from './components/TestLogin';
 
+export let loggedInUser = null
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const uid = user.uid;
+    console.log(uid);
+    loggedInUser = user
+  } else {
+    loggedInUser = null
+  }
+});
 
 
 const App = () => {
@@ -29,6 +43,7 @@ const App = () => {
         <Route path="/candidates" exact component={Candidates} />
         <Route path="/instructions" exact component={Instructions} />
         <Route path="/test" exact component={Test} />
+        <Route path="/testlogin" exact component={TestLogin} />
       </Switch>
     </Router>
   );

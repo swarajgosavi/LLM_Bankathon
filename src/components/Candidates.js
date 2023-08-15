@@ -1,63 +1,127 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import '../styles/Candidates.css';
-import { getDocs, collection } from 'firebase/firestore';
+import { getDocs, collection, deleteDoc, doc, getDoc, updateDoc, setDoc } from 'firebase/firestore';
 import { db } from '../fb';
-import { sendEmailVerification } from 'firebase/auth';
+import { loggedInUser } from '../App';
+import useFetch from '../useFetch';
 
-function SendEmail() {
-  var formdata = new FormData();
-  formdata.append("name", "Shubham");
+function ScreeningQue({ desc, shortlistedCards }) {
 
-var requestOptions = {
-  method: 'POST',
-  body: formdata,
-  redirect: 'follow'
-};
+    console.log(desc)
 
-fetch("http://localhost:8000/test", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+    var formdata = new FormData();
+    formdata.append("job_title", desc.title);
+    formdata.append("job_description", desc.description.enhanced);
+    formdata.append("skills_must", desc.mustHaveSkills);
+    formdata.append("skills_good", desc.goodToHaveSkills);
+
+    var requestOptions = {
+      method: 'POST',
+      body: formdata,
+      redirect: 'follow'
+    };
+
+    const { data, isPending, error } = useFetch('http://localhost:8000/screening-questions', requestOptions)
 
   return (
     <div>
-      {alert("Email sent")}
+      { error && <div>{ error }</div>}
+      { isPending && <div>Loading...</div> }
+      { data && 
+      <div>
+        {console.log(data.questions)}
+        {shortlistedCards.map((item, index) => {
+          let canRef = doc(db, 'users', loggedInUser.uid, 'Job Decsription/Bank Manager/Candidate', item.id)
+          setDoc(canRef, 
+            {questions: data.questions},
+          {merge: true})
+        })}
+        <button>Continue</button>
+      </div>
+      }
     </div>
   )
 }
 
+
+function SendEmail({ email_recipients, disqualifiedCards, shortlistedCards }) {
+
+  disqualifiedCards.map((item) => {
+    const docRef = doc(db, 'users', loggedInUser.uid, 'Job Decsription/Bank Manager/Candidate', item.id)
+
+    deleteDoc(
+      docRef
+    )
+  })
+
+  const JobRef = doc(db, 'users', loggedInUser.uid, 'Job Decsription/Bank Manager')
+
+  const [desc, setDesc] = useState(null);
+  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    async function fetchdata() {
+      const docSnap = await getDoc(JobRef);
+      console.log(docSnap.data())
+      setDesc(docSnap.data())
+      setShow(true)
+    }
+    fetchdata()
+    return () => {}
+  }, [])
+
+  email_recipients = email_recipients.slice(0,-2)
+
+  console.log(email_recipients)
+
+  var formdata = new FormData();
+  formdata.append("email_recipients", email_recipients);
+  formdata.append("hr_id", loggedInUser.uid);
+  formdata.append("job_description_id", "Bank Manager");
+
+  var requestOptions = {
+    method: 'POST',
+    body: formdata,
+    redirect: 'follow'
+  };
+
+  const { data, isPending, error } = useFetch('http://localhost:8000/send-email', requestOptions)
+
+  return (
+    <div>
+      { error && <div>{ error }</div> }
+      { isPending && <div>Sending Emails...</div> }
+      { data && show && 
+      <div>
+        <h1>Emails sent !</h1>
+        <ScreeningQue desc={desc} shortlistedCards={shortlistedCards} />
+      </div> }
+    </div>
+  )
+}
+
+
 const Candidates = () => {
+  const dbInstances = collection(db, 'users', loggedInUser.uid, 'Job Decsription/Bank Manager/Candidate')
 
-  const dbInstances = collection(db, '/users/JkDgBJKaFpdohDbE7IupoCl4pfT2/Job Decsription/xeItrAGr5zYF1k1dcnRp/Candidate')
 
-
-  const history = useHistory();
   const { jobTitle } = useParams();
   const [array, setArray] = useState([]);
   const [selectedOption, setSelectedOption] = useState('shortlisted');
 
-  const handleOptionChange = () => {
-  //   getDocs(collection(db, "/users/JkDgBJKaFpdohDbE7IupoCl4pfT2/Job Decsription/xeItrAGr5zYF1k1dcnRp/Candidate"))
-  // .then(response => {
-  //   console.log(
-  //     response.docs.map((item) => {
-  //       shortlistedCards.push(item.data())
-  //       return {...item.data(), id : item.id}
-  //     })
-  //   )
-  // })
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
   };
 
-  async function getData() {
-    const data = await getDocs(dbInstances);
-    setArray(data.docs.map(function(item) {
-      return { ...item.data(), id: item.id }
-    }))
-  }
-
   useEffect(() => {
-    getData();
+    async function getData() {
+      const data = await getDocs(dbInstances);
+      setArray(data.docs.map(function(item) { 
+        return { ...item.data(), id: item.id }
+      }))
+    }
+    getData()
   }, [])
 
   let [ emailbool, setEmail ] = useState(false)
@@ -66,15 +130,10 @@ const Candidates = () => {
     console.log(emailbool)
     setEmail(true)
     console.log(emailbool)
-     
   }
 
-  // shortlistedCards = [
-  //   { name: 'John Doe', skills: 'Frontend Development' },
-  //   { name: 'Jane Smith', skills: 'UI/UX Design' },
-  //   { name: 'John Doe', skills: 'Frontend Development' },
-  //   { name: 'Jane Smith', skills: 'UI/UX Design' },
-  // ];
+  const shortlistedCards = []
+  const disqualifiedCards = []
 
   // const disqualifiedCards = [
   //   { name: 'Michael Johnson', skills: 'Data Analysis' },
@@ -87,11 +146,13 @@ const Candidates = () => {
   //   { name: 'Emily Brown', skills: 'Project Management' },
   // ];
 
-  // const cards = selectedOption === 'shortlisted' ? shortlistedCards : disqualifiedCards;
+  const cards = selectedOption === 'shortlisted' ? shortlistedCards : disqualifiedCards;
 
   // const handleApprove = () => {
   //   console.log(`Approved ${selectedOption} candidates`);
   // };
+
+  let email_recipients = ""
 
   return (
     <div className="card-details-container">
@@ -99,7 +160,7 @@ const Candidates = () => {
       <div className="option-boxes">
         <div
           className={`option-box ${selectedOption === 'shortlisted' ? 'active' : ''}`}
-          onClick={getData}
+          onClick={() => handleOptionChange('shortlisted')}
         >
           Shortlisted
         </div>
@@ -112,24 +173,40 @@ const Candidates = () => {
         </div>
       </div>
       <div className="card-list">
-        {array.map(function(item) {
+        {array.map(function(item, index) {
+          if(item.cv_score > 7) {shortlistedCards.push(item)}
+          else {disqualifiedCards.push(item)}
+        })}
+        {selectedOption === 'shortlisted' ? 
+        shortlistedCards.map(function(item, index) {
+          email_recipients += item.email_id + ", "
         return (
-          
-            <div className="card">
-            <h3>{item.name}</h3>
-            <p>{`Email: ${item.email}`}</p>
-            <a href={item.CV} target="_blank" rel="noopener noreferrer" className="view-cv-link">
-              View CV
-            </a>
-          </div>
-         
+            <div className="card" key={index}>
+              <h3>{item.name}</h3>
+              <p>{`Email: ${item.email_id}`}</p>
+              <a href={item.cv_url} target="_blank" rel="noopener noreferrer" className="view-cv-link">
+                View CV
+              </a>
+            </div>
         )
-      })}
+      }) : 
+      disqualifiedCards.map(function(item, index) {
+        return (
+            <div className="card" key={index}>
+              <h3>{item.name}</h3>
+              <p>{`Email: ${item.email_id}`}</p>
+              <a href={item.cv_url} target="_blank" rel="noopener noreferrer" className="view-cv-link">
+                View CV
+              </a>
+            </div>
+        )
+      })
+      }
       </div>
       <button className="approve-button" onClick={sendEmail}>
         Approve
       </button>
-      { emailbool && <SendEmail />}
+      { emailbool && <SendEmail email_recipients={email_recipients} disqualifiedCards={disqualifiedCards} shortlistedCards={shortlistedCards} /> }
     </div>
   );
 };

@@ -9,8 +9,8 @@ body {
   }
   
   .login-container {
-    height: 650px;
-    width: 1200px;
+    width: 100vw;
+  height: 100vh;
     max-width: 90%; /* Adjust the width as needed */
     display: flex;
     border-radius: 10px;

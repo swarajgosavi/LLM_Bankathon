@@ -5,21 +5,10 @@ import companyLogo from '../images/company-logo.png';
 import menu from '../images/menu.png';
 import '../styles/Navbar.css';
 import '../styles/Sidebar.css';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../fb';
 import { FaHome, FaFileAlt, FaSignOutAlt, FaTimes } from 'react-icons/fa';
+import { loggedInUser } from '../App';
 
-let loggedInUser = null
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    const uid = user.uid;
-    console.log(uid);
-    loggedInUser = user
-  } else {
-    loggedInUser = null
-  }
-});
 
 const Navbar = () => {  
 

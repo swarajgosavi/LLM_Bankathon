@@ -1,20 +1,26 @@
 .upload-container {
     display: flex;
     padding: 50px;
+    width: 100vw;
+  height: 100vh;
   }
   
   .left-column {
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: #0A4D68 !important;
+    border-radius: 10px;
+    flex: 1;
   }
   
   .left-column h2 {
     margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 28px;
+    color: #fff;
+    text-align: center;
   }
   
   .left-column p {
-    color: #666;
+    color: #fff;
     line-height: 1.6;
   }
   
@@ -22,27 +28,38 @@
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 10px;
+    flex: 1;
+    margin-left: 20px;
+    text-align: center;
   }
   
   .right-column h2 {
     margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 28px;
+    color: #333;
+    display: inline-block;
+    padding: 12px 24px; 
   }
   
-  .upload-btn,
+
   .custom-upload-btn {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: #4caf50;
+    display: flex;
+    background-color: #0A4D68;
+    width: 100px;
+    height: 50px;
     color: #fff;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    position: relative;
+    top: -90px;
+    right: 0px;
+    left: 400px;
+    transition: background-color 0.3s;
   }
   
-  .upload-btn:hover,
   .custom-upload-btn:hover {
     background-color: #45a049;
   }
@@ -50,14 +67,6 @@
   /* Styling for the file input */
   .upload-btn input[type='file'] {
     display: none;
-  }
-  
-  .custom-upload-btn {
-    background-color: #2196f3;
-  }
-  
-  .custom-upload-btn:hover {
-    background-color: #1976d2;
   }
   
   .file-table {
@@ -68,17 +77,34 @@
   
   .file-table th,
   .file-table td {
-    padding: 10px;
+    padding: 12px;
     border-bottom: 1px solid #ddd;
     text-align: left;
+    font-size: 14px;
   }
   
   .file-table th {
     font-weight: bold;
     background-color: #f5f5f5;
+    color: #333;
   }
   
   .file-table tr:last-child td {
     border-bottom: none;
+  }
+
+  button {margin: 20px !important;}
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .upload-container {
+      flex-direction: column;
+      padding: 20px;
+    }
+  
+    .right-column {
+      margin-left: 0;
+      margin-top: 20px;
+    }
   }
   

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import '../styles/Home.css';
 import off1 from '../images/off1.jpg';
 import off2 from '../images/off2.jpg';
@@ -10,6 +11,7 @@ const carouselImages = [off1, off2, off3, off4, off5];
 
 const Home = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const history = useHistory();
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -19,6 +21,10 @@ const Home = () => {
         return () => clearInterval(interval);
     }, [carouselImages.length, currentImageIndex]);
 
+    function routeChange() {
+        history.push('/desc');
+    }
+
     return (
         <div className="home-container">
             <div className="row">
@@ -26,7 +32,7 @@ const Home = () => {
                     <h1 className="main-heading">Elevate Hiring</h1>
                     <h2 className="sub-heading">Seamlessly Match Talent with Opportunity</h2>
                     <div className="input-group mt-3">
-                        <button className="explore-btn" type="button" variant="primary">
+                        <button className="explore-btn" type="button" variant="primary" onClick={routeChange}>
                             Explore
                         </button>
                     </div>
@@ -49,11 +55,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-
-
         </div>
-        
-
     );
 };
 
