@@ -1,6 +1,6 @@
 # HireMate
 
-`Organizations need to shortlist hundreds of job applications each day which forces a tremendous workload on the HR department and recruiters. HireMate is a platform for HR managers to automate Tasks, such as job description analysis and enhancement, CV shortlisting and preparation of screening questions, which require HR workforce with LLMs. Revolutionizing HR Operations with LLM`
+> Organizations need to shortlist hundreds of job applications each day which forces a tremendous workload on the HR department and recruiters. HireMate is a platform for HR managers to automate Tasks, such as job description analysis and enhancement, CV shortlisting and preparation of screening questions, which require HR workforce with LLMs. Revolutionizing HR Operations with LLM
 
 ## Challenge:
 Traditional HR processes are time-consuming, manual, and lack data-driven insights, hindering efficiency and decision-making.
