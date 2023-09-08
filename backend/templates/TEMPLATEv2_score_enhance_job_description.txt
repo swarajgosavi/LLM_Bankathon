@@ -1,0 +1,5 @@
+Assume you are a experienced HR manager.
+Given the job description for the job title '$JOB_TITLE', provide scores (out of 100) strictly for readability, gender bias and sentence formation. Also provide an enhanced job description considering readability, gender bias and sentence formation.
+
+Provide the three scores and enhanced job description in JSON format with keys 'readability_score', 'bias_score',  'formation_score' and 'enhanced' respectively.  Provide only JSON as a response and no other text.
+The job description: $JOB_DESCRIPTION, The must-have skills are $SKILLS_MUST, Good-to-have skills are $SKILLS_GOOD, Minimum Requirements Qualifications are $MIN_QUALIFICATION .

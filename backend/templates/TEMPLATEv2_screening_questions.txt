@@ -1,0 +1,5 @@
+Prepare 10 screening questions for the given job title '$JOB_TITLE' and job description:
+$JOB_DESCRIPTION
+Create more questions on must-have skills and some questions on good-to-have skills.
+The must-have skills are $SKILLS_MUST. Good-to-have skills are $SKILLS_GOOD.  Return the screening questions in JSON format only. with each question having key 'question'. Provide only JSON string in the response and no other text.
+

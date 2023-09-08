@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# HireMate
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+`Organizations need to shortlist hundreds of job applications each day which forces a tremendous workload on the HR department and recruiters. HireMate is a platform for HR managers to automate Tasks, such as job description analysis and enhancement, CV shortlisting and preparation of screening questions, which require HR workforce with LLMs. Revolutionizing HR Operations with LLM`
 
-## Available Scripts
+## Challenge:
+Traditional HR processes are time-consuming, manual, and lack data-driven insights, hindering efficiency and decision-making.
 
-In the project directory, you can run:
+## Solution: 
+Introducing an LLM-powered application that leverages NLP, machine learning, and analytics to streamline HR tasks, enhance decision-making, and improve employee experience.
 
-### `npm start`
+## Opportunity: 
+Our scalable and customizable platform integrates with existing HR systems, ensuring smooth data flow and optimization of processes.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Outcome: 
+Elevate HR operations through automation, data-driven insights, and improved efficiency. Welcome to the future of HR with LLM!
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Setup
 
-### `npm test`
+## Frontend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+cd frontend
+npm install
+npm start
+```
+Make sure to udate Firebase Credentials
 
-### `npm run build`
+## Backend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+cd backend
+pip install -r requirments.txt
+uvicorn main:app --reload
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Make sure to udate Firebase Credentials and OpenAI API key

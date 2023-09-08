@@ -1,0 +1,30 @@
+Assume you are a professional HR.
+Given the screening round questions:
+
+1. $Q_1
+2. $Q_2
+3. $Q_3
+4. $Q_4
+5. $Q_5
+6. $Q_6
+7. $Q_7
+8. $Q_8
+9. $Q_9
+10. $Q_10
+
+
+and the candidate's answers to them,
+
+1. $A_1
+2. $A_2
+3. $A_3
+4. $A_4
+5. $A_5
+6. $A_6
+7. $A_7
+8. $A_8
+9. $A_9
+10. $A_10
+
+Respond 'yes' if the candidate can be hired given the responses, else respond 'no'.
+The response should only contain either 'yes' or 'no'

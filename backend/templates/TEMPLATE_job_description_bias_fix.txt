@@ -1,0 +1,3 @@
+Enhance the given job description such that all biases are eliminated. Provide only the enhanced job description (with key 'job_description') and explanation (with key 'explanation') in JSON format at the top of the response. Include only JSON in the response.
+
+The job description is: $JOB_DESCRIPTION

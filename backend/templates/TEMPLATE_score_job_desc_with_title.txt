@@ -1,0 +1,5 @@
+Given the job title: $JOB_TITLE
+and job description: $JOB_DESCRIPTION
+
+Score the job description out of 10 against the job title and provide enhancements for the same.
+Provide the score as the first line of the output. Give enhancements with "Enhancements:" title.

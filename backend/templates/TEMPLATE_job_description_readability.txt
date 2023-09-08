@@ -1,0 +1,3 @@
+Score the given job description out of 100 according to its readability to the applicant. Provide only the score (with key 'score') and explanation (with key 'explanation') in JSON format at the top of the response.
+
+The job description is: $JOB_DESCRIPTION

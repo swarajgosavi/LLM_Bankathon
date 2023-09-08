@@ -1,0 +1,7 @@
+Greetings!
+You have been selected for the screening round. Use the below ID and password to login on our screening portal.
+ID: $UID
+Password: $PASSWORD
+
+Thanks,
+Team HireMate

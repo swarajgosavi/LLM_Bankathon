@@ -1,0 +1,7 @@
+venv
+.idea
+__pycache__
+frontend
+backend
+cv
+node_modules

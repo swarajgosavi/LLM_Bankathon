@@ -4,13 +4,13 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA0SIzxO-ahye2EKhRe3uATzCC-ZiwRNoo",
-  authDomain: "bankathon-df037.firebaseapp.com",
-  projectId: "bankathon-df037",
-  storageBucket: "bankathon-df037.appspot.com",
-  messagingSenderId: "248387078665",
-  appId: "1:248387078665:web:c7de85901a2df7fa0e46d8",
-  measurementId: "G-BW9ECXDRTV",
+  apiKey: "<credential>",
+  authDomain: "<credential>",
+  projectId: "<credential>",
+  storageBucket: "<credential>",
+  messagingSenderId: "<credential>",
+  appId: "<credential>",
+  measurementId: "<credential>",
 };
 
 export const app = initializeApp(firebaseConfig);

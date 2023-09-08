@@ -1,0 +1,7 @@
+Given the curriculum vitae contents: $CV_CONTENT
+and job description: $JOB_DESCRIPTION
+
+Score the job description out of 10 against the curriculum vitae contents.
+Extract the name, email-id from the curriculum vitae contents.
+Provide the score (with key='score'), name (with key='name') and email-id (with key='email') in JSON format.
+The output should contain only JSON response and no other text.
